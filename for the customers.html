@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Where your experience is our main goal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Google Fonts for better look -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500|Merriweather:700&display=swap" rel="stylesheet">
+    <style>
+        /* --- CSS FROM YOUR MESSAGE --- */
+        body {
+            background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat, linear-gradient(135deg, #f3ece7 60%, #d6f5d6 100%);
+            font-family: 'Roboto', Arial, sans-serif;
+            color: #3e2c14;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        nav {
+            background: rgba(55, 32, 16, 0.95);
+            color: #fff;
+            padding: 0.8em 2em;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 8px #0003;
+            position: relative;
+            z-index: 2;
+        }
+        nav .logo {
+            font-size: 1.8em;
+            font-family: 'Merriweather', serif;
+            display: flex;
+            align-items: center;
+        }
+        nav .logo img {
+            width: 36px;
+            margin-right: 10px;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2em;
+            margin: 0;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.12em;
+            padding: 0.4em 1em 0.2em 1em;
+            border-radius: 18px;
+            transition: background .2s, color .2s, box-shadow .2s;
+            display: flex;
+            align-items: center;
+            gap: 0.4em;
+        }
+        nav ul li a:hover, nav ul li a.active {
+            background: #F7F3E3;
+            color: #4E944F;
+            box-shadow: 0 2px 8px #4E944F55;
+        }
+        .hero {
+            background: rgba(255,255,255,0.90);
+            margin: 2em auto;
+            padding: 2em;
+            border-radius: 1em;
+            max-width: 700px;
+            text-align: center;
+            box-shadow: 0 4px 24px #4E944F22;
+        }
+        .hero h1 {
+            color: #4E944F;
+            font-size: 2.8em;
+            text-shadow: 2px 2px 8px #b5e3ba;
+            margin-bottom: 0.35em;
+        }
+        .hero p {
+            font-size: 1.3em;
+        }
+        .header-slider {
+            width: 320px;
+            margin: 1.5em auto 1em auto;
+            border-radius: 1em;
+            overflow: hidden;
+            box-shadow: 0 4px 16px #4E944F55;
+            background: linear-gradient(105deg, #f3ece7 60%, #b5e3ba 100%);
+        }
+        .header-slider img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 1em;
+            display: none;
+        }
+        .header-slider img.active {
+            display: block;
+            animation: fadeInAnimePic 1s;
+        }
+        @keyframes fadeInAnimePic {
+            from { opacity: 0;}
+            to { opacity: 1;}
+        }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2em;
+        }
+        .menu-card {
+            background: #fff;
+            padding: 1em;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px #0002;
+            text-align: center;
+            transition: transform .25s;
+            border: 3px solid #e3cba6;
+        }
+        .menu-card img {
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 0.5em;
+            box-shadow: 0 2px 8px #a38b6d55;
+            border: 2px solid #b5e3ba;
+        }
+        .menu-card:hover {
+            transform: scale(1.04);
+            box-shadow: 0 2px 24px #4E944F44;
+        }
+        .menu-card h3 {
+            font-size: 1.3em;
+        }
+        .gallery-section {
+            background: rgba(255,255,255,0.8);
+            border-radius: 16px;
+            box-shadow: 0 2px 16px #a38b6d22;
+            padding: 1.5em 0;
+            margin-bottom:2em;
+        }
+        .gallery-slider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            height: 240px;
+            max-width: 680px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 16px;
+        }
+        .gallery-slider img {
+            max-width: 95%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 16px;
+            border: 3px solid #ffe2b0;
+            box-shadow: 0 2px 16px #4E944F33;
+            position: absolute;
+            left: 0; right: 0; margin: auto;
+            display: none;
+        }
+        .gallery-slider img.active {
+            display: block;
+            animation: fadeInAnimePic 1s;
+        }
+        .gallery-nav {
+            position: absolute;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            top: 45%;
+            z-index: 1;
+        }
+        .gallery-nav button {
+            background: rgba(78,148,79,0.7);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            font-size: 1.4em;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .gallery-nav button:hover {
+            background: #ffe2b0;
+            color: #4E944F;
+        }
+        .event-list li {
+            background: #fff;
+            margin-bottom: 1em;
+            padding: 1em;
+            border-radius: 12px;
+            box-shadow: 0 1px 6px #0001;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.1em;
+            border: 2px solid #b5e3ba;
+        }
+        .event-date {
+            background: #4E944F;
+            color: #fff;
+            border-radius: 5px;
+            padding: 0.4em 1em;
+            font-weight: bold;
+            margin-right: 1em;
+        }
+        .testimonial-cards {
+            display: flex;
+            gap: 2em;
+            justify-content: center;
+        }
+        .testimonial-card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px #0002;
+            padding: 1.4em;
+            max-width: 260px;
+            text-align: center;
+            border: 2px solid #ffe2b0;
+            font-size: 1.1em;
+        }
+        .testimonial-card span {
+            font-style: italic;
+            color: #4E944F;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            background: #fff;
+            padding: 2em;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px #0001;
+            max-width: 400px;
+            margin: auto;
+            border: 2px solid #b5e3ba;
+        }
+        form input, form textarea {
+            padding: 0.7em;
+            border-radius: 8px;
+            border: 1px solid #6B4226;
+            font-size: 1em;
+        }
+        form button {
+            background: #4E944F;
+            color: #fff;
+            border: none;
+            padding: 0.7em;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .btn {
+            background: #4E944F;
+            color: #fff;
+            padding: 0.7em 1.5em;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1em;
+            border: none;
+            margin-top: 1em;
+            display: inline-block;
+            box-shadow: 0 2px 8px #0001;
+            transition: background 0.2s;
+        }
+        .btn:hover {
+            background: #ffe2b0;
+            color: #4E944F;
+        }
+        footer {
+            background: #6B4226;
+            color: #fff;
+            margin-top: 2em;
+            position: relative;
+            z-index: 2;
+        }
+        .footer-main {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            padding: 2em 0;
+        }
+        .footer-main div {
+            margin-bottom: 1em;
+        }
+        .footer-main h3 {
+            margin-bottom: 0.3em;
+        }
+        .footer-main a {
+            color: #F7F3E3;
+            margin: 0 8px;
+            font-size: 1.3em;
+            transition: color .2s;
+        }
+        .footer-main a:hover {
+            color: #ffe2b0;
+        }
+        .footer-bottom {
+            background: #4E944F;
+            text-align: center;
+            padding: 0.7em 0;
+            font-size: 1em;
+        }
+        @media (max-width: 900px) {
+            .menu-grid, .testimonial-cards, .footer-main { flex-direction: column; display: block;}
+            section { padding: 1em 2vw;}
+            nav ul { flex-direction: row; gap: 0.4em;}
+        }
+        @media (max-width: 600px) {
+            .hero { margin: 0.5em; padding: 1em;}
+            nav { flex-direction: column; padding: 1em 1em;}
+            nav ul { flex-direction: column; gap: 0.5em;}
+            .footer-main { flex-direction: column; }
+            .gallery-slider { height: 180px; }
+            .header-slider img { height: 140px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+            <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Logo">
+            <span>Where your testbuds feel better than ever with the same tryouts</span>
+        </div>
+        <ul>
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Where we share the amazing experience</h1>
+        <p>This is a simple, modern web page example. Explore menu, gallery, events, feedback, and more!</p>
+        <div class="header-slider">
+
+            <img src="c:\Users\Smarf\Pictures\nature 2.jfif" alt="Nature 3">
+            <img src="c:\Users\Smarf\Pictures\nature 2.jfif" alt="Nature 2">
+            <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2b7d00?auto=format&fit=crop&w=600&q=80" alt="Nature 3">
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" style="margin-bottom:2em;">
+        <h2 style="text-align:center;color:#4E944F;">Menu</h2>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <img src="c:\Users\Smarf\Pictures\4 seasoned.jfif" alt="Pizza">
+                <h3>Pizza</h3>
+                <p>Delicious homemade pizza with fresh ingredients.</p>
+            </div>
+            <div class="menu-card">
+                <img src="c:\Users\Smarf\Pictures\burger 1.jfif" alt="Burger">
+                <h3>Burger</h3>
+                <p>Juicy beef burger with cheese and veggies.</p>
+            </div>
+            <div class="menu-card">
+                <img src="c:\Users\Smarf\Pictures\salad.jfif" alt="Salad">
+                <h3>Salad</h3>
+                <p>Fresh garden salad with a tasty dressing.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery-section">
+        <h2 style="text-align:center;color:#4E944F;">Gallery</h2>
+        <div class="gallery-slider">
+            <img src="c:\Users\Smarf\Pictures\coffe shop.jfif" class="active" alt="Gallery 1">
+            <img src="c:\Users\Smarf\Pictures\cafee scene.jfif" alt="Gallery 2">
+            <img src="c:\Users\Smarf\Pictures\friends.jfif" alt="Gallery 3">
+            <div class="gallery-nav">
+                <button onclick="prevImage()">&#8592;</button>
+                <button onclick="nextImage()">&#8594;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" style="margin-bottom:2em;">
+        <h2 style="text-align:center;color:#4E944F;">Testimonials</h2>
+        <div class="testimonial-cards">
+            <div class="testimonial-card">
+                <p>"Amazing website! Very easy to use."</p>
+                <span>- Alice</span>
+            </div>
+            <div class="testimonial-card">
+                <p>"Beautiful photos and great design."</p>
+                <span>- Bob</span>
+            </div>
+            <div class="testimonial-card">
+                <p>"Loved the food menu section!"</p>
+                <span>- Carol</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" style="margin-bottom:2em;">
+        <h2 style="text-align:center;color:#4E944F;">Contact Us</h2>
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea rows="3" placeholder="Your Message"></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-main">
+            <div>
+                <h3>Quick Links</h3>
+                <a href="#home">Home</a>
+                <a href="#menu">Menu</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div>
+                <h3>Social</h3>
+                
+                <a href="https://instagram.com/" target="_blank">Instagram</a>
+            </div>
+            <div>
+                <h3>Contact</h3>
+                <p><bold>Email:</bold> ikireziauroreparfaitemail.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 My Stylish Website. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Gallery Slider Script -->
+    <script>
+        // Simple gallery slider
+        const galleryImages = document.querySelectorAll('.gallery-slider img');
+        let currentGallery = 0;
+        function showGalleryImage(idx) {
+            galleryImages.forEach(img => img.classList.remove('active'));
+            galleryImages[idx].classList.add('active');
+        }
+        function prevImage() {
+            currentGallery = (currentGallery - 1 + galleryImages.length) % galleryImages.length;
+            showGalleryImage(currentGallery);
+        }
+        function nextImage() {
+            currentGallery = (currentGallery + 1) % galleryImages.length;
+            showGalleryImage(currentGallery);
+        }
+        // Optional: auto slider
+        setInterval(nextImage, 6000);
+    </script>
+</body>
+</html>
